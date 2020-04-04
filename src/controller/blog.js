@@ -1,5 +1,6 @@
 const xss = require('xss')
 const { exec } = require('../db/mysql')
+const moment = require('moment');
 
 const getList = (author, keyword) => {
   let sql = `select * from blogs where 1=1 `  // where 1=1  如果没有 author|keyword 保证查询功能正常
@@ -24,10 +25,9 @@ const newBlog = (blogData = {}) => { // blogData 是一个博客对象，包含 
   const title = xss(blogData.title)
   const content = xss(blogData.content)
   const author = blogData.author
-  const createTime = Date.now()
-  const sql = `insert into blogs (title, content, createtime, author) values ('${title}', '${content}', ${createTime}, '${author}');`
+  const createTime = moment().format("YYYY-MM-DD hh:mm:ss")
+  const sql = `insert into blogs (title, content, createtime, author) values ('${title}', '${content}', '${createTime}', '${author}');`
   return exec(sql).then(insertData => {
-    // console.log('insertData is ', insertData)
     return {
       id: insertData.insertId
     }
@@ -53,7 +53,6 @@ const updateBlog = (id, blogData = {}) => {
 const delBlog = (id, author) => { // id 就是要删除博客的 id
   const sql = `delete from blogs where id='${id}' and author='${author}';`
   return exec(sql).then(delData => {
-    // console.log('delData is ', delData)
     if (delData.affectedRows > 0) {
       return true
     }

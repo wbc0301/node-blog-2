@@ -9,9 +9,14 @@
 ```
 1. localhost:8080/index.html           访问: /api/blog/list           不需要登录
 2. localhost:8080/detail.html?id=1     访问：/api/blog/detail?id=1    不需要登录
-3. localhost:8080/login.html           访问：/api/user/login          登录    登录完成后前端跳转 location.href = './admin.html'
+3. localhost:8080/login.html           访问：/api/user/login          登录    登录完成后前端跳转 location.href = './admin.html'    后台保存 session 信息
+4. localhost:8080/admin.html        (博客管理中心页面)
+  (1): 点击搜索按钮 访问： /api/blog/list?isadmin=1&keyword=xxx  需要登录验证、keyword
+  (2): 点击删除按钮 访问： /api/blog/del?id=xxx                  需要登录验证、id
 
-
+5. localhost:8080/edit.html?id=5    (编辑页面)
+  (1): 访问：         /api/blog/detail?id=5    
+  (2): 点击保存访问：  /api/blog/update?id=5   POST  payload
 
 ```
 

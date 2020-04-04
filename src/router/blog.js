@@ -33,7 +33,6 @@ const handleBlogRouter = (req, res) => {
     })
   }
 
-
   // 获取详情
   if (method === 'GET' && req.path === '/api/blog/detail') {
     const result = getDetail(id)
