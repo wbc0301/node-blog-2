@@ -11,6 +11,7 @@
 2. localhost:8080/detail.html?id=1     访问：/api/blog/detail?id=1    不需要登录
 3. localhost:8080/login.html           访问：/api/user/login          登录    登录完成后前端跳转 location.href = './admin.html'
 
+
 ```
 
 ### 需开启redis  执行：redis-server
