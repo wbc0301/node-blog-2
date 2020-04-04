@@ -59,6 +59,6 @@
         proxy_set_header Host $host;
       }
 6. 停止|重启
-    nginx.exe -s stop                    //停止nginx
-    nginx.exe -s reload                  //重新加载nginx
-    nginx.exe -s quit                    //退出nginx
+  nginx.exe -s stop                    //停止nginx
+  nginx.exe -s reload                  //重新加载nginx
+  nginx.exe -s quit                    //退出nginx
