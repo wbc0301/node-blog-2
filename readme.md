@@ -42,16 +42,16 @@
 2. 不用安装， 解压到本地硬盘如：     C:\nginx-1.12.2       （最好不要有中文目录）
 3. 进入 nginx 根目录  打开控制台  执行 nginx               （开启 nginx 服务）
 4. 检查启动成功：
-  1. 浏览器访问： http://localhost:80   显示欢迎页面
-  2. 也可以执行：  tasklist /fi "imagename eq nginx.exe"
+   1. 浏览器访问： http://localhost:80   显示欢迎页面
+   2. 也可以执行：  tasklist /fi "imagename eq nginx.exe"
 5. 配置：（本项目相关）  （C:\nginx-1.12.2\conf\nginx.conf）     (参考： /src/utils/nginx.conf)
-  1. worker_processes  4;
-  2. listen       8080;
-  3. #location / {
+   1. worker_processes  4;
+   2. listen       8080;
+   3. #location / {
      #root   html;
      #index  index.html index.htm;
      #}
-  4. location / {
+   4. location / {
         proxy_pass http://localhost:8001;
       }
       location /api/ {
