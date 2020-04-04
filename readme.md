@@ -6,6 +6,14 @@
 ### 静态文件服务 端口：8001   （在view中打开cmd  执行：http-server -p 8001）
 ### node server 端口：8000    (项目根目录中执行：npm run dev)
 
+```
+1. localhost:8080/index.html           访问: /api/blog/list           不需要登录
+2. localhost:8080/detail.html?id=1     访问：/api/blog/detail?id=1    不需要登录
+3. localhost:8080/login.html           访问：/api/user/login          登录    登录完成后前端跳转 location.href = './admin.html'
+
+```
+
+### 需开启redis  执行：redis-server
 
 ## 项目从服务到数据经过五层拆分
 1. www.js 层：  创建服务，监听端口

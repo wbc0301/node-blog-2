@@ -2,7 +2,7 @@ const xss = require('xss')
 const { exec } = require('../db/mysql')
 
 const getList = (author, keyword) => {
-  let sql = `select * from blogs where 1=1 `
+  let sql = `select * from blogs where 1=1 `  // where 1=1  如果没有 author|keyword 保证查询功能正常
   if (author) {
     sql += `and author='${author}' `
   }
