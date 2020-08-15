@@ -4,17 +4,15 @@ const { access } = require('./src/utils/log')    // 记录日志
 const handleBlogRouter = require('./src/router/blog')
 const handleUserRouter = require('./src/router/user')
 
-// 获取 cookie 的过期时间
-const getCookieExpires = () => {
+const getCookieExpires = () => { // 获取 cookie 的过期时间
   const d = new Date()
   d.setTime(d.getTime() + (24 * 60 * 60 * 1000))
   return d.toGMTString()     // Sun, 05 Apr 2020 14:47:41 GMT
 }
 
-// 用于处理 post data
-const getPostData = (req) => {
-  const promise = new Promise((resolve, reject) => {
-    if (req.method !== 'POST') {
+const getPostData = (req) => { // 处理 post data
+  return new Promise((resolve, reject) => {
+    if (req.method !== 'POST') { // 非 post
       resolve({})
       return
     }
@@ -27,17 +25,16 @@ const getPostData = (req) => {
       postData += chunk.toString()
     })
     req.on('end', () => {
-      if (!postData) {
+      if (!postData) { // 空 data
         resolve({})
         return
       }
       resolve(JSON.parse(postData))
     })
   })
-  return promise
 }
 
-const serverHandle = (req, res) => {
+module.exports = (req, res) => {
   // 1：记录 access log
   access(`${req.method} -- ${req.url} -- ${req.headers['user-agent']} -- ${new Date().toString()} -------- wbc`)
 
@@ -55,9 +52,7 @@ const serverHandle = (req, res) => {
   cookieStr.split(';').forEach(item => {
     if (!item) return
     const arr = item.split('=')
-    const key = arr[0].trim()
-    const val = arr[1].trim()
-    req.cookie[key] = val
+    req.cookie[arr[0].trim()] = arr[1].trim()
   })
 
   // 5：解析 session （使用 redis）
@@ -65,7 +60,7 @@ const serverHandle = (req, res) => {
   let userId = req.cookie.userid
   if (!userId) {    // 用户第一次访问 种下: userId
     needSetCookie = true
-    userId = `${Date.now()}_${Math.random()}`
+    userId = `${Date.now()}_${Math.random()}`  // "1597331948757_0.3133110066216691"
     set(userId, {}) // 初始化 redis 中的 session 值
   }
 
@@ -112,7 +107,3 @@ const serverHandle = (req, res) => {
     res.end()
   })
 }
-
-module.exports = serverHandle
-
-// process.env.NODE_ENV

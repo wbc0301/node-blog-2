@@ -4,9 +4,7 @@ const { REDIS_CONF } = require('../conf/db.js')
 // 创建客户端
 const redisClient = redis.createClient(REDIS_CONF.port, REDIS_CONF.host)
 
-redisClient.on('error', err => {
-  console.error(err)
-})
+redisClient.on('error', err => { console.error(err) })
 
 function set(key, val) {
   if (typeof val === 'object') {
@@ -28,9 +26,7 @@ function get(key) {
       }
 
       try {
-        resolve(
-          JSON.parse(val)
-        )
+        resolve(JSON.parse(val))
       } catch (ex) {
         resolve(val)
       }
@@ -39,7 +35,4 @@ function get(key) {
   return promise
 }
 
-module.exports = {
-  set,
-  get
-}
+module.exports = { set, get }

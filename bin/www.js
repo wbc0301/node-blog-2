@@ -1,7 +1,5 @@
-const http = require('http')
+const http = require('http');
+const serverHandle = require('../app'); // 引入
 
-const PORT = 8000
-const serverHandle = require('../app')
-
-const server = http.createServer(serverHandle)
-server.listen(PORT)
+const server = http.createServer(serverHandle); // 创建服务
+server.listen(8000); // 监听端口

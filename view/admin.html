@@ -102,18 +102,18 @@
       const data = res.data || []
       data.forEach(item => {
         $tableContainer.append($(`
-                    <tr>
-                        <td>
-                            <a href="/detail.html?id=${item.id}" target="_blank">${item.title}</a>
-                        </td>
-                        <td>
-                            <a href="/edit.html?id=${item.id}">编辑</a>
-                        </td>
-                        <td>
-                            <a data-id="${item.id}" class="item-del">删除</a>
-                        </td>
-                    </tr>
-                `))
+          <tr>
+            <td>
+              <a href="/detail.html?id=${item.id}" target="_blank">${item.title}</a>
+            </td>
+            <td>
+              <a href="/edit.html?id=${item.id}">编辑</a>
+            </td>
+            <td>
+              <a data-id="${item.id}" class="item-del">删除</a>
+            </td>
+          </tr>
+        `))
       })
     })
 

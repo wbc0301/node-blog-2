@@ -5,6 +5,7 @@
 ### nginx监听   端口：8080    (修改本地 C:\nginx-1.12.2\conf\nginx.conf  使之监听: 8080)
 ### 静态文件服务 端口：8001   （在view中打开cmd  执行：http-server -p 8001）
 ### node server 端口：8000    (项目根目录中执行：npm run dev)
+### 需开启redis  执行：redis-server
 
 ```
 1. localhost:8080/index.html           访问: /api/blog/list           不需要登录
@@ -18,9 +19,14 @@
   (1): 访问：         /api/blog/detail?id=5    
   (2): 点击保存访问：  /api/blog/update?id=5   POST  payload
 
-```
+项目架构：
+  首页：不用登录，可以查看所有博客、详情
+  博客详情页
 
-### 需开启redis  执行：redis-server
+  登录页
+  作者主页： 查看自己博客、详情    可新建、编辑、删除
+
+```
 
 ## 项目从服务到数据经过五层拆分
 1. www.js 层：  创建服务，监听端口
