@@ -9,7 +9,7 @@ function writeLog(writeStream, log) {
 // 生成 write Stream
 function createWriteStream(fileName) {
   const fullFileName = path.join(__dirname, '../', '../', 'logs', fileName)
-  const writeStream = fs.createWriteStream(fullFileName, { flags: 'a'})  // fs.WriteStream 继承自 stream.Writable   上边有 write方法
+  const writeStream = fs.createWriteStream(fullFileName, { flags: 'a' })  // fs.WriteStream 继承自 stream.Writable   上边有 write方法
   return writeStream
 }
 
@@ -19,6 +19,4 @@ function access(log) {
   writeLog(accessWriteStream, log)
 }
 
-module.exports = {
-  access
-}
+module.exports = { access }
