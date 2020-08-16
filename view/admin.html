@@ -94,7 +94,7 @@
     // 加载数据
     get(url).then(res => {
       if (res.errno !== 0) {
-        alert('数据错误')
+        alert(res.message)
         return
       }
 

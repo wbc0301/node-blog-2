@@ -59,9 +59,7 @@
       const result = {}
       paramStr.split('&').forEach(itemStr => {
         const arr = itemStr.split('=')
-        const key = arr[0]
-        const val = arr[1]
-        result[key] = val
+        result[arr[0]] = arr[1]
       })
       return result
     }
@@ -78,27 +76,27 @@
 
     // 加载数据
     get(url).then((res) => {
+
       if (res.errno !== 0) {
         alert('数据错误')
         return
       }
 
-      // 遍历博客列表，并显示
       const data = res.data || []
-      data.forEach(item => {
+      data.forEach(item => { // 遍历博客列表，并显示
         $container.append($(`
-                    <div class="title-wrapper">
-                        <p class="title">
-                        <a href="/detail.html?id=${item.id}" target="_blank">${item.title}</a>
-                        </p>
-                        <div class="info-wrapper">
-                            <span>
-                                <a href="/index.html?author=${item.author}">${item.author}</a>
-                            </span>
-                            <span>${getFormatDate(item.createtime)}</span>
-                        </div>
-                    </div>
-                `))
+          <div class="title-wrapper">
+            <p class="title">
+            <a href="/detail.html?id=${item.id}" target="_blank">${item.title}</a>
+            </p>
+            <div class="info-wrapper">
+              <span>
+                <a href="/index.html?author=${item.author}">${item.author}</a>
+              </span>
+              <span>${getFormatDate(item.createtime)}</span>
+            </div>
+          </div>
+        `))
       })
     })
   </script>

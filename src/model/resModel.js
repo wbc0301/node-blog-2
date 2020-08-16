@@ -13,14 +13,12 @@ class BaseModel { // model基类
     }
   }
 }
-
 class SuccessModel extends BaseModel {
   constructor(data, message) {
     super(data, message)
     this.errno = 0
   }
 }
-
 class ErrorModel extends BaseModel {
   constructor(data, message) {
     super(data, message)
@@ -28,7 +26,4 @@ class ErrorModel extends BaseModel {
   }
 }
 
-module.exports = {
-  SuccessModel,
-  ErrorModel
-}
+module.exports = { SuccessModel, ErrorModel }

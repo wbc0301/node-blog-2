@@ -35,19 +35,16 @@
       const username = $('#textUsername').val()
       const password = $('#textPassword').val()
       const url = '/api/user/login'
-      const data = {
-        username,
-        password
-      }
+      const data = { username, password }
+
       post(url, data).then(res => {
-        if (res.errno === 0) {
-          // 登录成功
-          location.href = './admin.html'
+        if (res.errno === 0) { 
+          location.href = './admin.html' // 登录成功
         } else {
-          // 登录失败
-          alert(res.message)
+          alert(res.message)  // 登录失败
         }
       })
+
     })
   </script>
 </body>
